@@ -1,3 +1,4 @@
+
 # 23.2 Обработка исключений: операторы try except
 
 import random
@@ -52,5 +53,3 @@ except (FileNotFoundError, PermissionError) as exc:
     print('Такого файла не существует или указанный путь является директорией')
     print(f'Исключение: {exc}')
     print(f'Тип исключения: {type(exc)}')
-
-
