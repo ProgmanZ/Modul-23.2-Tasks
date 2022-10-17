@@ -14,7 +14,7 @@ try:
     user_file = input('Введите имя файла: ')
     user_path = os.path.abspath(user_file)
     print(user_path)
-    ages_file = open(''.join([user_path, '.txt' if not user_file.endswith('.txt') else '']), 'r', encoding='utf-8')
+    ages_file = open(user_path, 'r', encoding='utf-8')
     ages_db = ages_file.read()
     ages_file.close()
 
@@ -42,13 +42,14 @@ try:
                     print(f'Нашлась ошибка в файле {user_file if user_file.endswith(".txt") else f"{user_file}.txt"}')
                     print(f'Исключение: {exc}')
                     print(f'Тип исключения: {type(exc)}')
+                    print('Но работа программы не была завершена!')
             result_file.close()
         else:
             print('Никаких изменений не было внесено.')
 
 
-except FileNotFoundError as exc:
-    print('Такого файла не существует')
+except (FileNotFoundError, PermissionError) as exc:
+    print('Такого файла не существует или указанный путь является директорией')
     print(f'Исключение: {exc}')
     print(f'Тип исключения: {type(exc)}')
 
